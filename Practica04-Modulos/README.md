@@ -48,3 +48,6 @@ console.log(persona.apellido);
 console.log(persona.getName());
 console.log(persona.getDomicilio());
 ```
+
+## Output del código
+![Imagen1](img/01.png)
