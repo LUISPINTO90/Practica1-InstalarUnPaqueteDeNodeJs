@@ -128,3 +128,10 @@ console.log(emtr);
 emtr.emit("greet");
 emtr.emit("jump");
 ```
+
+## Output del código
+Parte 1:
+![Imagen1](img/01.png)  
+
+Parte 2:
+![Imagen2](img/02.png)
