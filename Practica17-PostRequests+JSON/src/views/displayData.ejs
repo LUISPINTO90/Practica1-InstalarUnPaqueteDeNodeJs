@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Estudiante</title>
+    <link rel="stylesheet" href="/assets/style.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Estudiante <%= nombre %></h1>
+
+      <ul>
+        <li><b>Nombre</b>: <%= nombre %></li>
+        <li><b>Edad</b>: <%= edad %></li>
+        <li><b>NSS</b>: <%= nss %></li>
+        <li><b>Tipo de sangre</b>: <%= tipoSangre %></li>
+      </ul>
+
+      <form action="/student" method="GET">
+        <input type="submit" value="Regresar" />
+      </form>
+    </main>
+  </body>
+</html>
