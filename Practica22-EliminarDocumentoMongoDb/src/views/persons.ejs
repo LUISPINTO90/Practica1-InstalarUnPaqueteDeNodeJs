@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Personas</title>
+    <link rel="stylesheet" href="/assets/style.css" />
+    <!-- Agregar SweetAlert -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"
+    />
+  </head>
+  <body>
+    <main>
+      <h1>Personas</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>NSS</th>
+            <th>Nombre</th>
+            <th>Edad</th>
+            <th>Tipo de Sangre</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for (let person of Persons) { %>
+          <tr>
+            <td><%= person.nss %></td>
+            <td><%= person.nombre %></td>
+            <td><%= person.edad %></td>
+            <td><%= person.tipoSangre %></td>
+            <td>
+              <a href="/findById/<%= person._id %>" class="btnUpdate">Update</a>
+              <!-- Agregar SweetAlert de confirmación antes de eliminar -->
+              <a href="/deletePerson/<%= person._id %>" class="btnDelete"
+                >Delete</a
+              >
+            </td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+      <a href="/addPerson">Agregar persona</a>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+      // SweetAlert
+      const swalWithStyle = Swal.mixin({
+        customClass: {
+          container: "swal-container",
+          title: "swal-title",
+          text: "swal-text",
+          confirmButton: "swal-button swal-button--confirm",
+          cancelButton: "swal-button swal-button--cancel",
+          icon: "swal-icon",
+        },
+        buttonsStyling: false,
+        reverseButtons: true,
+      });
+
+      // Event click de btnDelete
+      const deleteLinks = document.querySelectorAll(".btnDelete");
+      deleteLinks.forEach((link) => {
+        link.addEventListener("click", confirmDelete);
+      });
+
+      function confirmDelete(event) {
+        event.preventDefault();
+
+        // Mostrar el SweetAlert de confirmación
+        swalWithStyle
+          .fire({
+            icon: "warning",
+            title: "¿Estás seguro?",
+            text: "Esta acción eliminará el documento",
+            showCancelButton: true,
+            confirmButtonText: "Eliminar",
+            cancelButtonText: "Cancelar",
+            reverseButtons: true,
+          })
+          .then((result) => {
+            if (result.isConfirmed) {
+              // Si se confirma la eliminación, redirigir al enlace original
+              window.location.href = event.target.href;
+            }
+          });
+      }
+    </script>
+  </body>
+</html>
